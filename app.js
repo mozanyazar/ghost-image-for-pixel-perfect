@@ -12,10 +12,10 @@ function changeGhostOpacity(bool) {
       if (increaseOpacity <= 1) {
          return (ghostImg.style.opacity = increaseOpacity)
       }
-      let decreaseOpacity = opacityValue * 1 - 0.1
-      if (decreaseOpacity >= 0) {
-         return (ghostImg.style.opacity = decreaseOpacity)
-      }
+   }
+   let decreaseOpacity = opacityValue * 1 - 0.1
+   if (decreaseOpacity >= 0) {
+      return (ghostImg.style.opacity = decreaseOpacity)
    }
 }
 
