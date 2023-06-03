@@ -7,11 +7,12 @@ function changeGhostOpacity(bool) {
       .getComputedStyle(ghostImg)
       .getPropertyValue('opacity')
 
-   if (bool === true) {
+   if (bool) {
       let increaseOpacity = opacityValue * 1 + 0.1
       if (increaseOpacity <= 1) {
          return (ghostImg.style.opacity = increaseOpacity)
       }
+      return
    }
    let decreaseOpacity = opacityValue * 1 - 0.1
    if (decreaseOpacity >= 0) {
@@ -20,25 +21,18 @@ function changeGhostOpacity(bool) {
 }
 
 function openAndCloseTheGhost() {
-   if (ghostIsActive === false) {
+   if (!ghostIsActive) {
       ghostContainer.classList.add('active')
       return (ghostIsActive = true)
-   } else if (ghostIsActive === true) {
-      ghostContainer.classList.remove('active')
-      return (ghostIsActive = false)
    }
+   ghostContainer.classList.remove('active')
+   return (ghostIsActive = false)
 }
 
 function keypressFunc(event) {
-   if (event.key === 'G' && event.shiftKey) {
-      openAndCloseTheGhost(event)
-   } else if ((event.key === 'N' || event.key === 'B') && event.shiftKey) {
-      if (event.key === 'N' && event.shiftKey) {
-         changeGhostOpacity(true)
-      } else if (event.key === 'B' && event.shiftKey) {
-         changeGhostOpacity(false)
-      }
-   }
+   if (event.key === 'G' && event.shiftKey) openAndCloseTheGhost(event)
+   else if (event.key === 'N' && event.shiftKey) changeGhostOpacity(true)
+   else if (event.key === 'B' && event.shiftKey) changeGhostOpacity(false)
    return
 }
 
